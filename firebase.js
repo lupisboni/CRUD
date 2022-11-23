@@ -6,12 +6,12 @@ import { getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, 
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBDUiTYwl_Qv3ldcSbdHWC9aK_Ca8NKZM0",
-    authDomain: "fir-javascript-crud-50660.firebaseapp.com",
-    projectId: "fir-javascript-crud-50660",
-    storageBucket: "fir-javascript-crud-50660.appspot.com",
-    messagingSenderId: "391726803591",
-    appId: "1:391726803591:web:3ed898be857b3cfccb6622",
+    apiKey: "AIzaSyB6KRl9yCKC_HImKfy-5E86fmljUMdzNxY",
+  authDomain: "fir-javascript-c.firebaseapp.com",
+  projectId: "fir-javascript-c",
+  storageBucket: "fir-javascript-c.appspot.com",
+  messagingSenderId: "295333959087",
+  appId: "1:295333959087:web:21399b5d484afd329e4b5a"
 };
 
 // Initialize Firebase
