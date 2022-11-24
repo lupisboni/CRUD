@@ -1,6 +1,19 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc,} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+  doc,
+  getDoc,
+  updateDoc
+
+} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"
+
+import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,23 +26,32 @@ const firebaseConfig = {
   messagingSenderId: "295333959087",
   appId: "1:295333959087:web:21399b5d484afd329e4b5a"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore();
+const db = getFirestore()
 
+export const saveTask = (title, description) =>
+  addDoc(collection(db, 'tasks'), { title, description });
 
-export const saveTask = (title, description) => 
-    addDoc(collection(db, "tasks"), {title, description});
- 
-export const getTasks = () => getDocs(collection(db, 'tasks'));
+const storage = getStorage();
 
-export const onGetTasks = (callback) => 
-    onSnapshot(collection(db, 'tasks'),callback);
+export const getTasks = () => getDocs(collection(db, 'tasks'))
 
-export const deleteTasks = id => deleteDoc(doc(db, 'tasks', id));
+export const onGetTasks = (callback) => onSnapshot(collection(db, 'tasks'), callback);
 
-export const getTask = id => getDoc(doc(db, 'tasks', id));
+export const deleteTask = id => deleteDoc(doc(db, 'tasks', id));
 
-export const updateTasks = (id, newFields) => updateDoc(doc(db, 'tasks', id), newFields);
+export const getTask = id => getDoc(doc(db, 'tasks', id))
+
+export const updateTask = (id, newFields) => updateDoc(doc(db, 'tasks', id), newFields);
+
+export const saveImage = file => {
+  console.log(file);
+
+  const storageRef = ref(storage, `Images/${file.name}`);
+
+  uploadBytes(storageRef, file).then((snapshot) => {
+    console.log('Uploaded a blob or file!');
+  });
+}
