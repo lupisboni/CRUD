@@ -77,22 +77,25 @@ taskForm.addEventListener('submit', (e) => {
 
     const title = taskForm['task-title'].value;
     const description = taskForm['task-description'].value;
+    const imageUrl = document.querySelector('#image').scroll;
+   
 
     if (title.length > 3 && description.length >3){
 
     if (!editStatus) {
-        saveTask(title, description)
+        saveTask(title, description,imageUrl)
     } else {
-        updateTask(id, {
-            title: title,
+        updateTask(idForEdit, {
+            'title': title,
             description: description
         });
 
         editStatus = false;
-        taskForm['btn-task-save'].innerText = 'Save'
+        document.querySelector('#btn-task-save').innerText = 'Save';
     }
     taskForm.reset();
     }else{
         alert('debes escribir algo')
     }
+     
 })

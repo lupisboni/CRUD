@@ -64,7 +64,7 @@ uploadTask.on('state_changed',
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     //console.log('Upload is ' + progress + '% done');
-    document.querySelector('#progress').value='Upload is ' + progress + '% done';
+    document.querySelector('#progress').style.width = `${progress}%`
   }, 
   (error) => {
     // Handle unsuccessful uploads
@@ -73,12 +73,11 @@ uploadTask.on('state_changed',
     // Handle successful uploads on complete
     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      document.querySelector('#image').src=downloadURL;
       console.log('File available at', downloadURL);
     });
   }
 );
 
-  uploadBytes(storageRef, file).then((snapshot) => {
-    console.log('Uploaded a blob or file!');
-  });
+ 
 }
